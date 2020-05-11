@@ -1,0 +1,52 @@
+Prob: https://leetcode.com/problems/number-of-enclaves/
+
+Explanation: Similar to Number of islands
+
+https://massivealgorithms.blogspot.com/2019/04/leetcode-1020-number-of-enclaves.html
+
+Code:
+
+class Solution:
+    def numEnclaves(self, A: List[List[int]]) -> int:
+        
+        def dfs(A,i,j):
+            if i < 0 or j < 0 or i >= len(A) or j >= len(A[0]) or A[i][j] != 1:
+                return 
+            
+            A[i][j] = 0
+            dfs(A,i-1,j)
+            dfs(A,i,j-1)
+            dfs(A,i+1,j)
+            dfs(A,i,j+1)
+            
+        # From each boundary mark all those points 1 from which we can travel out of the box
+        
+        for i in range(len(A)):   
+            if A[i][0] == 1:
+                dfs(A,i,0)
+        
+        for i in range(len(A)):
+            if A[i][len(A[0])-1] == 1:
+                dfs(A,i,len(A[0])-1)
+                
+        for j in range(len(A[0])):
+            if A[0][j] == 1:
+                dfs(A,0,j)
+                
+        for j in range(len(A[0])):
+            if A[len(A)-1][j] == 1:
+                dfs(A,len(A)-1,j)
+                
+      
+       
+       
+        count = 0        
+        # Now count number of 1st in A:
+        for i in range(len(A)):
+            for j in range(len(A[0])):
+                if A[i][j] == 1:
+                    count += 1
+        return count
+                
+        
+        
