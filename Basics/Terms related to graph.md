@@ -1,6 +1,6 @@
 <b> What is Graph:</b>
 
-Graphs are the perfect data structure for modeling networks, which make them an indispensable piece of your data structure toolkit. 
+<pre> Graphs are the perfect data structure for modeling networks, which make them an indispensable piece of your data structure toolkit. 
 They’re composed of nodes, or vertices, which hold data, and edges, which are a connection between two vertices.
 A single node is a vertex.
 
@@ -9,4 +9,4 @@ functioning as the edges.
 
 What about the internet? Web pages can be vertices, and the hyperlinks which connect them are edges.
 
-Real-world relationships modeled as graphs are numerous, making them an essential concept to master.
+Real-world relationships modeled as graphs are numerous, making them an essential concept to master. </pre>
