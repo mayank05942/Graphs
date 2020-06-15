@@ -8,7 +8,7 @@ adj = [[0]*V for _ in range(V)] # V x V matrix
 # Mention the starting vertex
 
 
-def helper(adj,sv,visited):
+def dfs(adj,sv,visited):
     num_vertex = len(adj)
     visited[sv] = True
     for i in range(num_vertex): # go to every vertex
