@@ -1,4 +1,4 @@
-<pre> What is Graph: </pre>
+<pre> What is Graph:
 
 Graphs are the perfect data structure for modeling networks, which make them an indispensable piece of your data structure toolkit. 
 They’re composed of nodes, or vertices, which hold data, and edges, which are a connection between two vertices.
