@@ -7,6 +7,9 @@
 
 # To understand that watch last part of first video.
 
+# Time complexity: O(V+E)  V because we have to visit all vertex and E because we have to backtrack also.
+# Space: O(V)
+
 _____________________________________________________________________________________________________________________________________
 
 V = int(input("Enter number of Vertex:")) # no of vertex
