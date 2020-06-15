@@ -14,7 +14,7 @@ def helper(adj,sv,visited):
     for i in range(num_vertex): # go to every vertex
         if adj[sv][i] == 1 and visited[i] is False:
             #print(i)
-            helper(adj,i,visited)
+            dfs(adj,i,visited)
 
 def print_graph(adj):
     visited = [False]* (len(adj))
@@ -22,7 +22,7 @@ def print_graph(adj):
     for i in range(len(adj)):
         if visited[i] == False:
             
-            helper(adj,i,visited)
+            dfs(adj,i,visited)
 
 
 
