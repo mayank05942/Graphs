@@ -2,6 +2,8 @@
 # Explanation: https://www.youtube.com/watch?v=6Fw4jYtP6jU&list=PLpO3gASfJEIJ6cYs4kAY3SnH2kpohSTZI&index=6&t=0s
 
 # Time: O(V+E) since we are visiting and then removing from queue both will take time # no of times we visit the vertex
+# No backtracking here since we don't use recursion here.
+# we use queue to visit all adjacent nodes.
 # Space: O(V)
 
 #_______________________________________________________________________________________________________________________________________
