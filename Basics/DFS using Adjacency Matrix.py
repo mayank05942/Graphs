@@ -1,3 +1,7 @@
+#Concept: https://www.youtube.com/watch?v=0XYSdIVY6Ks
+#          https://www.youtube.com/watch?v=3kkiRfMWBIc&list=PLpO3gASfJEIJ6cYs4kAY3SnH2kpohSTZI&index=5&t=0s
+
+
 V = int(input("Enter number of Vertex:")) # no of vertex
 E = int(input("Enter number of Edges:"))   # No of egdes
 
