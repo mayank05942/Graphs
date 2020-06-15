@@ -1,6 +1,11 @@
-#Concept: https://www.youtube.com/watch?v=0XYSdIVY6Ks
+<env># Concept: https://www.youtube.com/watch?v=0XYSdIVY6Ks
 #          https://www.youtube.com/watch?v=3kkiRfMWBIc&list=PLpO3gASfJEIJ6cYs4kAY3SnH2kpohSTZI&index=5&t=0s
 
+
+# In DFS once we start exploring an vertex we keep exploring it until we cannot got further
+# once we cannot go further using visited array we backtrack and then explore the other possiblilty
+
+# To understand that watch last part of first video. </env>
 
 V = int(input("Enter number of Vertex:")) # no of vertex
 E = int(input("Enter number of Edges:"))   # No of egdes
