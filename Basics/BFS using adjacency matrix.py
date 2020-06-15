@@ -1,6 +1,11 @@
 
 # Explanation: https://www.youtube.com/watch?v=6Fw4jYtP6jU&list=PLpO3gASfJEIJ6cYs4kAY3SnH2kpohSTZI&index=6&t=0s
 
+# Time: O(V+E) since we are visiting and then removing from queue both will take time # no of times we visit the vertex
+# Space: O(V)
+
+#_______________________________________________________________________________________________________________________________________
+
 
 V = int(input("Enter number of Vertex:")) # no of vertex
 E = int(input("Enter number of Edges:"))   # No of egdes
