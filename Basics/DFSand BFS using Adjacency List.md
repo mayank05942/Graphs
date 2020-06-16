@@ -1,5 +1,11 @@
 <b>DFS:</b>
 
+<pre>
+<b>The Algorithm</b>
+Pick any node. If it is unvisited, mark it as visited and recur on all its adjacent nodes.
+Repeat until all the nodes are visited, or the node to be searched is found.
+</pre>
+
 <pre>Adjacency list can be given in two ways:
 
 1- List of List like:   [[1],[0,3],[5],[1,2,3]]:
