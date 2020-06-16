@@ -1,4 +1,4 @@
-[/b]DFS:[/b]
+[b]DFS:[/b]
 
 [pre]Adjacency list can be given in two ways:
 
