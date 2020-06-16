@@ -1,0 +1,80 @@
+Prob: https://leetcode.com/problems/keys-and-rooms/
+______________________________________________________________________________________________________________________________________
+
+BFS :
+
+class Solution:
+    def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
+        if not rooms:
+            return True
+        
+        queue = []
+        ans = []
+        visited = [False]* len(rooms)
+        
+        visited[0] = True
+        
+        for i in rooms[0]:
+            
+            queue.append(i)
+            visited[i] = True
+            
+        while queue:
+            front = queue.pop(0)
+            ans.append(front)
+            for i in rooms[front]:
+                if visited[i] ==  False:
+                    queue.append(i)
+                    visited[i] = True
+                else:
+                    continue
+        return all(visited)
+
+#########################################################################################################################
+
+Second Variation:
+------------------
+
+class Solution:
+    def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
+        
+        visited = [False]*len(rooms)
+        #queue = []
+        def bfs(rooms,sv,visited):
+            queue = []
+            for items in rooms[sv]:
+                queue.append(items)
+                visited[items] = True
+            visited[sv] = True
+            while queue:
+                front = queue.pop(0)
+                for neighbour in rooms[front]:
+                    if visited[neighbour] == False:
+                        queue.append(neighbour)
+                        visited[neighbour] = True
+                    else:
+                        continue
+        
+        bfs(rooms,0,visited)
+        
+        return all(visited)
+_________________________________________________________________________________________________________________________________
+
+DFS:
+
+
+
+class Solution:
+    def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
+        
+        visited = set()
+        
+        def dfs(rooms,sv,visited):
+            if sv not in visited:
+                visited.add(sv)
+                for neighbour in rooms[sv]:
+                    dfs(rooms,neighbour,visited)
+        
+        dfs(rooms,0,visited)
+        
+        return len(visited) == len(rooms)
