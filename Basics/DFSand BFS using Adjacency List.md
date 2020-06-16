@@ -1,7 +1,6 @@
 [/b]DFS:[/b]
 
-[pre]
-Adjacency list can be given in two ways:
+[pre]Adjacency list can be given in two ways:
 
 1- List of List like:   [[1],[0,3],[5],[1,2,3]]:
                         
@@ -40,6 +39,4 @@ def dfs(visited, graph, node):
             dfs(visited, graph, neighbour)
 
 # Driver Code
-dfs(visited, graph, 'A')
-
-[/pre]
+dfs(visited, graph, 'A')[/pre]
