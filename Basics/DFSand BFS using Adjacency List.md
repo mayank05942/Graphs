@@ -1,6 +1,6 @@
-[b]DFS:[/b]
+<b>DFS:</b>
 
-[pre]Adjacency list can be given in two ways:
+<pre>Adjacency list can be given in two ways:
 
 1- List of List like:   [[1],[0,3],[5],[1,2,3]]:
                         
@@ -16,7 +16,7 @@
                                         }
                                         
                          In these cases key = Vertex and it's value represent the neighbours of that vertex
-[/pre]
+
 Code:
 
 Using a Python dictionary to act as an adjacency list
@@ -40,4 +40,4 @@ def dfs(visited, graph, node):
             dfs(visited, graph, neighbour)
 
 Driver Code
-dfs(visited, graph, 'A')
+dfs(visited, graph, 'A')</pre>
