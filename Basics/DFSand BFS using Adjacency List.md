@@ -18,9 +18,9 @@
                          In these cases key = Vertex and it's value represent the neighbours of that vertex
 
 Code:
+______
 
-Using a Python dictionary to act as an adjacency list
-
+# Using a Python dictionary to act as an adjacency list
 graph = {
     'A' : ['B','C'],
     'B' : ['D', 'E'],
@@ -30,7 +30,7 @@ graph = {
     'F' : []
 }
 
-visited = set() 
+visited = set() # Set to keep track of visited nodes.
 
 def dfs(visited, graph, node):
     if node not in visited:
@@ -39,5 +39,7 @@ def dfs(visited, graph, node):
         for neighbour in graph[node]:
             dfs(visited, graph, neighbour)
 
-Driver Code
-dfs(visited, graph, 'A')</pre>
+# Driver Code
+dfs(visited, graph, 'A')
+
+</pre>
