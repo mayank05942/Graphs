@@ -16,7 +16,7 @@
                                         }
                                         
                          In these cases key = Vertex and it's value represent the neighbours of that vertex
-                         
+[/pre]
 Code:
 
 Using a Python dictionary to act as an adjacency list
@@ -40,4 +40,4 @@ def dfs(visited, graph, node):
             dfs(visited, graph, neighbour)
 
 Driver Code
-dfs(visited, graph, 'A')[/pre]
+dfs(visited, graph, 'A')
