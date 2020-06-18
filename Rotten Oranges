@@ -1,0 +1,45 @@
+Prob: https://leetcode.com/problems/rotting-oranges/
+____________________________________________________________________________________________________________________________________
+
+Explanation:
+
+___________________________________________________________________________________________________________________________________
+
+Code:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        
+        queue = []
+        total,rotten,time = 0,0,0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == 2:
+                    queue.append((i,j))
+                if grid[i][j] > 0:
+                    total += 1
+        
+        if total == 0:
+            return 0
+        while queue:
+            
+            rotten += len(queue)
+            
+            if rotten == total:
+                return time
+            
+            time += 1
+            
+            for _ in range(len(queue)):
+                (i,j) = queue.pop(0)
+                
+                for x,y in [(i+1,j),(i-1,j),(i,j+1),(i,j-1)]:
+                    
+                    if 0<=x<len(grid)  and 0<=y<len(grid[0]) and grid[x][y] == 1:
+                        #print(x,y)
+                        grid[x][y] = 2
+                        queue.append((x,y))
+        return -1
+            
+            
+        
