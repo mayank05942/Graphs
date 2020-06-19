@@ -1,0 +1,50 @@
+Prob: https://leetcode.com/problems/as-far-from-land-as-possible/
+________________________________________________________________________________________________________________________________
+
+Explanation: Similar to rotten oranges
+__________________________________________________________________________________________________________________________________
+
+Code:
+
+class Solution:
+    def maxDistance(self, grid: List[List[int]]) -> int:
+        if not grid:
+            return -1
+        add = 0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                add = add + grid[i][j]
+        if add == 0:
+            return -1
+        if add == len(grid) * len(grid[0]):
+            return -1
+        
+        queue = []
+        cost = 0
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == 1:
+                    queue.append((i,j,cost))
+                
+        while queue:  # Using BFS
+            
+          
+            
+            for _ in range(len(queue)):
+                
+                i,j,cost = queue.pop(0)
+                
+
+                # Travel N4 directions for that particular (i,j)
+                for x,y in [(i-1,j),(i,j-1),(i,j+1),(i+1,j)]:
+                    # should not go out of bounds and the value should be 0
+                    if 0 <= x < len(grid) and 0 <= y < len(grid[0]) and grid[x][y] == 0:
+                        
+                        grid[x][y] = 1  # To mark it as visited
+                        
+                        queue.append((x,y,cost+1))
+        return cost
+            
+        
+        
+        
