@@ -1,0 +1,66 @@
+Prob: https://leetcode.com/problems/possible-bipartition/
+________________________________________________________________________________________________________________________________________________________________________
+
+Explanation:
+
+This is extention of bipartite graph.
+
+We have to check whether the graph is bipartite or not.
+
+But dislike is not the graph adj list
+
+since N = 1.........n
+
+Hence adj list will be of size N+1 where 0 will contain empty list
+N = 4  
+
+adj = [ [],[persons 1 dislikes],[persons 2 dislikes],[persons 3 dislikes]]
+
+Now check bipartionship
+
+_______________________________________________________________________________________________________________________________________________________________________
+
+
+Code:
+
+class Solution:
+    def possibleBipartition(self, N: int, dislikes: List[List[int]]) -> bool:
+        
+        
+        color = [0]* (N+1)
+        graph = [[] for _ in range(N+1)]
+        
+        for v in dislikes:
+            graph[v[0]].append(v[1])
+            graph[v[1]].append(v[0])
+        
+        print(graph)
+        colors = [0]*len(graph)
+        
+        for i in range(1,len(graph)):
+            
+            if colors[i]:
+                continue
+            
+            queue = []
+            queue.append(i)
+            colors[i] = 1
+        
+            #print(queue)
+            while queue:
+
+                front = queue.pop(0)
+
+                for i in graph[front]:
+                    if colors[i] == 0:
+                        colors[i] = -colors[front]
+                        queue.append(i)
+                        
+                        
+                    if colors[i] == colors[front]:
+                        return False
+
+
+
+        return True
+        
