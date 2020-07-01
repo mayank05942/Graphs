@@ -20,7 +20,7 @@ class Solution:
             
             else:
                 temp = board[i][j]
-                board[i][j] = "#"
+                board[i][j] = "$"    # else use visited type array
 
                 res = dfs(board,i-1,j,idx+1,word,visited) or dfs(board,i,j+1,idx+1,word,visited) or  dfs(board,i,j-1,idx+1,word,visited) or dfs(board,i+1,j,idx+1,word,visited)
 
@@ -30,7 +30,7 @@ class Solution:
            
         
         
-        visited = [[True]* len(board[0]) for _ in range(len(board))]
+        
         
         for i in range(len(board)):
             for j in range(len(board[0])):
