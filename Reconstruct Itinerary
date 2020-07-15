@@ -1,0 +1,46 @@
+Prob: https://leetcode.com/problems/reconstruct-itinerary/
+_________________________________________________________________________________________________
+
+Explanation:
+https://leetcode.com/problems/reconstruct-itinerary/discuss/375397/Simply-simple-Python-Solution-Using-stack-for-dfs-with-comments
+https://www.youtube.com/watch?v=ig7MhurQeLs&list=PLpO3gASfJEIJ6cYs4kAY3SnH2kpohSTZI&index=22&t=0s
+__________________________________________________________________________________________________
+
+Code:
+
+class Solution:
+    def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+        # Step1 - Make a hash map of from -> dest
+        d = {}
+        
+        for i,j in tickets:
+            if i not in d:
+                d[i] = [j]
+            else:   
+                d[i].append(j)
+                
+        # sort the dest for lexographical order
+        
+        for k in d.keys():
+            d[k].sort(reverse = True)
+        
+        # DFS using stack
+        
+        stack = ["JFK"]
+        ans = []
+        
+        while stack:
+            last = stack[-1]
+            
+            if last in d and len(d[last]) > 0:
+                stack.append(d[last].pop())
+            else:
+                ans.append(stack.pop())
+                
+        return ans[::-1]
+            
+        
+            
+            
+            
+        
