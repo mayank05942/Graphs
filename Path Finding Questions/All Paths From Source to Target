@@ -38,6 +38,25 @@ class Solution:
         
         dfs([0],[0],0)
         return res
+
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+Code: BFS
+class Solution:
+    def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
+        queue = [[0]]
+        res = []
+        while queue:
+            front = queue.pop(0) # this is the idx
+            if front[-1] == len(graph)-1:
+                res.append(front)
+            else:
+                for i in graph[front[-1]]:
+                    queue.append(front+[i])
+        
+            
+
+        return res
         
 
 
