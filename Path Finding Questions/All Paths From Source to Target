@@ -42,6 +42,10 @@ class Solution:
 ----------------------------------------------------------------------------------------------------------------------------------------------
 
 Code: BFS
+
+Explanation: https://www.youtube.com/watch?v=CYnvDzMprdc
+
+
 class Solution:
     def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
         queue = [[0]]
