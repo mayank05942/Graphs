@@ -1,0 +1,88 @@
+Prob: https://leetcode.com/problems/course-schedule-ii/
+____________________________________________________________________________________________________________________________________
+
+Explanation:
+-------------
+Detect cycle and apply topological sort
+
+_____________________________________________________________________________________________________________________________________
+
+Code:
+
+class Solution:
+    def findOrder(self, n: int, prerequisites: List[List[int]]) -> List[int]:
+    
+        # first detect cycle:
+        
+        
+        def canFinish(n,prerequisites):
+  
+          adj = [[] for _ in range(n)]
+
+          for x,y in prerequisites:
+              adj[y].append(x)
+          color = [0]*n
+
+          def dfs(sv):
+              if color[sv] == -1: # Still processing
+                  return True
+              if color[sv] == 1:  # processed
+                  return False
+
+              color[sv] = -1 # checking current vertex
+              for i in adj[sv]:
+                  if dfs(i):
+                      return True
+
+              color[sv] = 1 # processed
+
+              return False
+
+          for sv in range(n):
+              if dfs(sv):
+                  return False
+          return True
+        
+        #----------------------------------
+        
+        flag = canFinish(n,prerequisites)
+        
+        if flag == False:
+            return []
+        else:
+            
+            # Topological sort
+            
+            adj = [[] for _ in range(n)]
+
+            for j,i in prerequisites :
+
+                adj[i].append(j)
+
+            #print(adj)
+            visited = set()
+            stack = []
+            ans = []
+
+
+            def dfs(sv):
+
+                for i in adj[sv]:
+                    if i not in visited:
+                        visited.add(i)
+                        dfs(i)
+
+                #visited.add(sv)
+                stack.append(sv)
+                
+            for sv in range(len(adj)):
+                if sv not in visited:
+                    visited.add(sv)
+                    dfs(sv)
+
+            while stack:
+                x = stack.pop()
+                ans.append(x)
+            
+            return ans
+
