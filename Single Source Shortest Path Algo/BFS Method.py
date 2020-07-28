@@ -29,7 +29,7 @@ def bfs(adj,start,end):
         if front == end:
             return backtrace(parent,start,end)
 
-        for i in adj.get(front,[]):
+        for i in adj.get(front,[]):     # get method will return the value of the key front and in case of key error it will return []
             if i not in queue:
                 parent[i] = front
                 queue.append(i)
