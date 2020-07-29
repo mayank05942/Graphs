@@ -45,7 +45,7 @@ class Solution:
                     heapq.heappush(queue,(curr_dist+weight,neigh))
         
         
-        if len(shortest_path) == N:
+        if len(shortest_path) == N:      # if the graph isn't connected, we can return -1
             return max(shortest_path.values())
         
         return -1
