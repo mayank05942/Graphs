@@ -1,0 +1,38 @@
+Prob: https://leetcode.com/problems/cheapest-flights-within-k-stops/
+___________________________________________________________________________________________________________________________
+
+Explanation:
+
+Modified Dijkistra Algo
+
+___________________________________________________________________________________________________________________________
+
+Code:
+
+class Solution:
+    def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, K: int) -> int:
+        if src == dst:
+            return 0
+        
+        import heapq
+        import collections
+        d = collections.defaultdict(list)
+        
+        for start,end,weight in flights:
+            d[start].append((end,weight))
+        
+        start = src
+        queue = [(0,start,0)]
+        path = {}
+        
+        while queue:
+            curr_dist,curr_vertex,stop = heapq.heappop(queue)
+            
+            if curr_vertex == dst:
+                return curr_dist
+            for neigh,weights in d[curr_vertex]:
+                if stop < K+1:
+                    heapq.heappush(queue,(weights+curr_dist,neigh,stop+1))
+        
+        return -1
+        
