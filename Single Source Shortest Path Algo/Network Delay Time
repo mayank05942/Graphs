@@ -1,0 +1,53 @@
+Prob: https://leetcode.com/problems/network-delay-time/submissions/
+____________________________________________________________________________________________________________________________________________
+
+Explanation:
+
+Can be solved by any SSSP. We are using Dijkstra Algo using heap method
+
+_____________________________________________________________________________________________________________________________________________
+
+Code:
+
+class Solution:
+    def networkDelayTime(self, times: List[List[int]], N: int, K: int) -> int:
+    
+        # [start,end,weight]
+        
+        import collections
+        d = collections.defaultdict(list)
+
+        for start,end,weight in times:
+            d[start].append((end,weight))
+
+        print(d)
+        
+        import heapq
+        n = N
+
+        start_vertex = K
+        
+        visited = [False]*n
+        queue = []
+
+        heapq.heappush(queue,(0,start_vertex))  # 0 is the dist
+        
+        shortest_path = {}
+        
+        while queue:
+
+            curr_dist,curr_vertex = heapq.heappop(queue)
+
+            if curr_vertex not in shortest_path:
+                shortest_path[curr_vertex] = curr_dist
+
+                for neigh,weight in d[curr_vertex]:
+                    heapq.heappush(queue,(curr_dist+weight,neigh))
+        
+        
+        if len(shortest_path) == N:
+            return max(shortest_path.values())
+        
+        return -1
+
+
