@@ -1,0 +1,40 @@
+Prob: https://leetcode.com/problems/find-the-town-judge/
+______________________________________________________________________________________________________
+
+Explanation:
+
+Create adj list like : { des: [ sources]} now check if des present in sources of any node and also make sure that the length of [soruces] to equal to N-1
+i.e excluding itself.
+
+____________________________________________________________________________________________________
+
+Code:
+
+class Solution:
+    def findJudge(self, N: int, trust: List[List[int]]) -> int:
+        if not trust and N == 1:
+            return 1
+        if not trust and N > 1:
+            return -1
+        import collections
+        from collections import defaultdict
+        d = defaultdict(list)
+
+        for source,des in trust:
+            d[des].append(source)
+        #print(d)
+        temp = d.values()
+        res = []
+        for items in temp:
+            for x in items:
+                if x not in res:
+                    res.append(x)
+                
+        #print(res)
+        ans = []
+        for k,v in d.items():
+            #print(k,v)
+            if k not in res and len(v) == N-1:
+                
+                return k
+        return -1
