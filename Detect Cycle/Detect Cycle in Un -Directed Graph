@@ -3,6 +3,8 @@ ________________________________________________________________________________
 
 Explanation:
 
+https://www.youtube.com/watch?v=u_GqKBsD7-8&list=PLpO3gASfJEIJ6cYs4kAY3SnH2kpohSTZI&index=8&t=0s
+
 we have to search for a node that is visited prev and is not it's parent. Whenever such node will exist then we will a cyclic graph.
 
 
