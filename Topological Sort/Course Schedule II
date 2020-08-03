@@ -7,82 +7,76 @@ Detect cycle and apply topological sort
 
 _____________________________________________________________________________________________________________________________________
 
-Code:
-
 class Solution:
-    def findOrder(self, n: int, prerequisites: List[List[int]]) -> List[int]:
-    
-        # first detect cycle:
-        
-        
-        def canFinish(n,prerequisites):
-  
-          adj = [[] for _ in range(n)]
+    def findOrder(self, n: int, p: List[List[int]]) -> List[int]:
+        from collections import defaultdict
 
-          for x,y in prerequisites:
-              adj[y].append(x)
-          color = [0]*n
+        adj = defaultdict(list)
 
-          def dfs(sv):
-              if color[sv] == -1: # Still processing
-                  return True
-              if color[sv] == 1:  # processed
-                  return False
+        for x,y in p:
+            adj[y].append(x)
+        for i in range(n):
+            if i not in adj:
+                adj[i] = []
 
-              color[sv] = -1 # checking current vertex
-              for i in adj[sv]:
-                  if dfs(i):
-                      return True
+        colors = {}
 
-              color[sv] = 1 # processed
+        for k in adj.keys():
+            colors[k] = "White"
 
-              return False
 
-          for sv in range(n):
-              if dfs(sv):
-                  return False
-          return True
-        
-        #----------------------------------
-        
-        flag = canFinish(n,prerequisites)
-        
-        if flag == False:
+        def dfs(sv,colors):
+            colors[sv] = "Gray"
+            for n in adj[sv]:
+                if colors[n] == "Gray":
+                    return True
+                if colors[n] == "White":
+                    if dfs(n,colors) == True:
+                        return True
+
+            colors[sv] = "Black"
+            return False
+
+
+        def detect_cycle(adj,colors):
+
+            for sv in adj.keys():
+                if colors[sv] == "White":
+                    if dfs(sv,colors) == True:
+                        return True
+
+            return False
+
+        flag = detect_cycle(adj,colors)
+
+        if flag == True:
             return []
+
         else:
-            
-            # Topological sort
-            
-            adj = [[] for _ in range(n)]
 
-            for j,i in prerequisites :
-
-                adj[i].append(j)
-
-            #print(adj)
-            visited = set()
             stack = []
-            ans = []
-
+            visited = set()
 
             def dfs(sv):
-
-                for i in adj[sv]:
-                    if i not in visited:
-                        visited.add(i)
-                        dfs(i)
-
-                #visited.add(sv)
+                for n in adj[sv]:
+                    if n not in visited:
+                        visited.add(n)
+                        dfs(n)
                 stack.append(sv)
-                
+
+
             for sv in range(len(adj)):
                 if sv not in visited:
                     visited.add(sv)
                     dfs(sv)
-
+            ans = []
             while stack:
-                x = stack.pop()
-                ans.append(x)
-            
+                ans.append(stack.pop())
+            #ans.reverse()    
+
             return ans
+
+
+
+
 
