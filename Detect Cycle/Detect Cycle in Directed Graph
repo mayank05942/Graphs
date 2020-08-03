@@ -1,0 +1,68 @@
+Explanation:
+
+We will use 3 colors here:
+
+1 - "White" which means the vertex is not visited yet
+2- " Gray" which means vertex is currently being visited and we are running dfs on it
+3- " Black" which means vertex is visited
+
+We will use a colors array of length = num of vertex for this and will initalize all with white color
+
+How to detect cycle:
+
+Apply normal DFS:
+
+But while applying DFS if we found the neigh of current vertex is marked as gray that means there is a cycle present in the graph
+return True for that.
+
+Video Explanation: https://www.youtube.com/watch?v=yaJ6FgyoXCw&t=416s
+
+________________________________________________________________________________________________________________________
+
+Code:
+
+n = 2
+p = [[1,0],[0,1]]
+
+from collections import defaultdict
+
+adj = defaultdict(list)
+
+for x,y in p:
+    adj[x].append(y)
+
+for i in range(n):
+    if i not in adj:
+       adj[i] = []
+
+colors = {}
+
+for k in adj.keys():
+    colors[k] = "White"
+
+
+def dfs(sv,colors):
+    colors[sv] = "Gray"
+    for n in adj[sv]:
+        if colors[n] == "Gray":
+            return True
+        if colors[n] == "White":
+            if dfs(n,colors) == True:
+                return True
+
+    colors[sv] = "Black"
+    return False
+
+
+def detect_cycle(adj,colors):
+
+    for sv in adj.keys():
+        if colors[sv] == "White":
+            if dfs(sv,colors) == True:
+                return True
+
+    return False
+
+print(detect_cycle(adj,colors))
+
+
