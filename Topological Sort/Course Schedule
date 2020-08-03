@@ -11,41 +11,52 @@ from pre-req create an adj list
 __________________________________________________________________________________________________________________________
 
 Code:
-------
 
 class Solution:
-    def canFinish(self, n: int, prerequisites: List[List[int]]) -> bool:
-    
-    
-    # Step1 - Create adj list
-    
-        adj = [[] for _ in range(n)]
-        
-        for x,y in prerequisites:
+    def canFinish(self, n: int, p: List[List[int]]) -> bool:
+        from collections import defaultdict
+
+        adj = defaultdict(list)
+
+        for x,y in p:
             adj[y].append(x)
-      
-      # Cycle detection using coloring method
-      
-        color = [0]*n
         
-        def dfs(sv):
-            if color[sv] == -1: # Still processing
-                return True
-            if color[sv] == 1:  # processed
-                return False
-            
-            color[sv] = -1 # checking current vertex
-            for i in adj[sv]:
-                if dfs(i):
+        for i in range(n):
+            if i not in adj:
+                adj[i] = []
+
+        colors = {}
+
+        for k in adj.keys():
+            colors[k] = "White"
+
+
+        def dfs(sv,colors):
+            colors[sv] = "Gray"
+            for n in adj[sv]:
+                if colors[n] == "Gray":
                     return True
-            
-            color[sv] = 1 # processed
-            
+                if colors[n] == "White":
+                    if dfs(n,colors) == True:
+                        return True
+
+            colors[sv] = "Black"
             return False
-        
-        
-        for sv in range(n):
-            if dfs(sv):
-                return False
-        return True
-        
+
+
+        def detect_cycle(adj,colors):
+
+            for sv in adj.keys():
+                if colors[sv] == "White":
+                    if dfs(sv,colors) == True:
+                        return True
+
+            return False
+
+        if detect_cycle(adj,colors) == True:
+            return False
+        else:
+            return True
+
+
+
