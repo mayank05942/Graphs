@@ -1,0 +1,44 @@
+Prob: https://leetcode.com/problems/is-graph-bipartite/
+_____________________________________________________________________________________________________________________________________________________________________
+
+Explanation:
+
+
+
+______________________________________________________________________________________________________________________________________________________________________
+Code:
+
+class Solution:
+    def isBipartite(self, graph: List[List[int]]) -> bool:
+        
+       
+        colors = [0]*len(graph)
+        
+        for i in range(len(graph)):
+            
+            if colors[i]:
+                continue
+            
+            queue = []
+            queue.append(i)
+            colors[i] = 1
+        
+            print(queue)
+            while queue:
+
+                front = queue.pop(0)
+
+                for i in graph[front]:
+                    if colors[i] == 0:
+                        colors[i] = -colors[front]
+                        queue.append(i)
+                        
+                        
+                    if colors[i] == colors[front]:
+                        return False
+
+
+
+        return True
+
+                
