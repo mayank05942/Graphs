@@ -1,0 +1,46 @@
+Prob: https://leetcode.com/problems/shortest-path-in-binary-matrix/
+______________________________________________________________________________________________________________________________
+
+Explanation: Very similar to Rotten Oranges
+______________________________________________________________________________________________________________________________
+
+Code:
+______
+
+class Solution:
+    def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
+       
+        queue = [(0,0,1)]
+        
+        
+        
+        if grid[0][0] == 1 or grid[-1][-1] == 1:
+            return -1   # means initial and end cell is blocked we cannot complete the traversal
+        
+        while queue:  # Using BFS
+            
+            
+            for _ in range(len(queue)):
+                
+                i,j,cost = queue.pop(0)
+                
+                if i == len(grid)-1 and j == len(grid[0])-1: # When we reached the end of the grid then return the cost
+                    return cost
+                
+                # Travel N8 directions for that particular (i,j)
+                for x,y in [(i-1,j-1),(i-1,j),(i-1,j+1),(i,j-1),(i,j),(i,j+1),(i+1,j-1),(i+1,j),(i+1,j+1)]:
+                    # should not go out of bounds and the value should be 0
+                    if 0 <= x < len(grid) and 0 <= y < len(grid[0]) and grid[x][y] == 0:
+                        
+                        grid[x][y] = 1  # To mark it as visited
+                        
+                        queue.append((x,y,cost+1))
+        
+        # if we are not able to reach the end of the grid return -1
+        return -1
+            
+            
+            
+        
+        
+        

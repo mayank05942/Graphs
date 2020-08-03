@@ -1,0 +1,44 @@
+Prob: https://leetcode.com/problems/number-of-closed-islands/
+____________________________________________________________________________________________________________________________________
+
+Explanation: https://leetcode.com/problems/number-of-closed-islands/discuss/425150/JavaC%2B%2B-with-picture-Number-of-Enclaves
+_______________________________________________________________________________________________________________________________________
+
+code:
+
+class Solution:
+    def closedIsland(self, grid: List[List[int]]) -> int:
+        count = 0
+        def dfs(grid,i,j):
+            if 0 <= i < len(grid) and 0 <= j < len(grid[0]) and grid[i][j] == 0:
+                grid[i][j] = 1
+                #count += 1
+                dfs(grid,i-1,j)
+                dfs(grid,i+1,j)
+                dfs(grid,i,j-1)
+                dfs(grid,i,j+1)
+            else:
+                return
+        
+        # remove all islands connected with edges
+        for j in range(len(grid[0])):
+            if grid[0][j] == 0:
+                dfs(grid,0,j)
+            if grid[len(grid)-1][j] == 0:
+                dfs(grid,len(grid)-1,j)
+        
+        for i in range(len(grid)):
+            if grid[i][0] == 0:
+                dfs(grid,i,0)
+            if grid[i][len(grid[0])-1] == 0:
+                dfs(grid,i,len(grid[0])-1)
+        
+        
+        for i in range(1,len(grid)):
+            for j in range(1,len(grid[0])-1):
+                if grid[i][j] == 0:
+                    dfs(grid,i,j)
+                    count += 1
+        return count
+        
+        
