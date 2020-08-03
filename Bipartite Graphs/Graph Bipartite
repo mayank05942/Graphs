@@ -3,6 +3,16 @@ ________________________________________________________________________________
 
 Explanation:
 
+Using BFS:
+
+Using Two colors: 0 For not visited and 1 for visited
+
+for each vertex which is not visited apply BFS
+
+in BFS if color of neighbour vertex and source vertex is same then graph is not bipartite
+
+if any of the above case return False return False
+
 
 
 ______________________________________________________________________________________________________________________________________________________________________
@@ -11,34 +21,32 @@ Code:
 class Solution:
     def isBipartite(self, graph: List[List[int]]) -> bool:
         
-       
-        colors = [0]*len(graph)
-        
-        for i in range(len(graph)):
-            
-            if colors[i]:
-                continue
-            
-            queue = []
-            queue.append(i)
-            colors[i] = 1
-        
-            print(queue)
+        def bfs(sv,colors,adj):
+            queue = [sv]
+            ans = []
+            colors[sv] = 1
             while queue:
-
                 front = queue.pop(0)
 
-                for i in graph[front]:
-                    if colors[i] == 0:
-                        colors[i] = -colors[front]
-                        queue.append(i)
-                        
-                        
-                    if colors[i] == colors[front]:
+                for n in adj[front]:
+                    if colors[n] == 0:
+                        queue.append(n)
+                        colors[n] = - colors[front]
+
+                    if colors[n] == colors[front]:
                         return False
 
 
-
-        return True
-
-                
+            return True
+        
+        def check(adj):
+            colors = [0]*len(adj)
+            
+            for sv in range(len(adj)):
+                if colors[sv] == 0:
+                    if bfs(sv,colors,adj) == False:
+                        return False
+            
+            return True
+        
+        return check(graph)
