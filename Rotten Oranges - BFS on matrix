@@ -1,0 +1,64 @@
+Prob: https://leetcode.com/problems/rotting-oranges/
+____________________________________________________________________________________________________________________________________
+
+Explanation:
+
+Apply BFS in graph
+
+Always (0,0) should be 2 initially else return 0 // total is used to handle those cases
+keep fresh variable to keep track on remaining fresh oranges
+if after bfs , fresh != 0 return -1
+else return the count
+
+___________________________________________________________________________________________________________________________________
+
+Code:
+
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        fresh = 0
+        total = 0
+        queue = []
+        for i in range(len(grid)):
+            for j in range(len(grid[0])):
+                if grid[i][j] == 2:
+                    queue.append((i,j))
+                
+                if grid[i][j] == 1:
+                    fresh += 1
+                
+                if grid[i][j] > 0:
+                    total += 1
+        
+        if total == 0:
+            return 0
+        
+        count = 0
+        while queue:
+            count += 1
+            for _ in range(len(queue)):
+                x,y = queue.pop(0)
+
+                for p,q in [(x+1,y),(x-1,y),(x,y-1),(x,y+1)]:
+                    #print(p,q)
+
+                    if p >= 0 and p < len(grid) and q >= 0 and q < len(grid[0]) and grid[p][q] == 1:
+                        #grid[p][q] = 2
+                        queue.append((p,q))
+
+                        grid[p][q] = 2
+                        fresh -= 1
+        if fresh == 0:
+            return count-1
+        else:
+            return -1
+        
+        
+    
+        
+                        
+       
+        
+                
+                
+        
