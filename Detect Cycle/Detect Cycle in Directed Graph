@@ -22,7 +22,10 @@ ________________________________________________________________________________
 Code:
 
 n = 2
-p = [[1,0],[0,1]]
+p = [[1,0],[0,1]]   # Not given in adj list format here 1 -> 0 and 0 -> 1
+
+
+# Step 1 - Create an adj list
 
 from collections import defaultdict
 
@@ -30,6 +33,8 @@ adj = defaultdict(list)
 
 for x,y in p:
     adj[x].append(y)
+
+# If a vertex is not present
 
 for i in range(n):
     if i not in adj:
