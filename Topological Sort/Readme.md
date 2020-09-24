@@ -1,4 +1,5 @@
-# Topological sort
+## Topological sort
+
 Course schedule prob
 DAG -> Directed and Acyclc graph
 if a graph is directed and there is a cycle then Topological sort is not applicable there
