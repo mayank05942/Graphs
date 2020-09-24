@@ -12,6 +12,4 @@ Input is in the form of -> graph and the output is an array
 
 requires a stack
 
-idea is -> start from a node do DFS if from that node no other
-
-node can be traversed append it to the stack
+idea is -> start from a node do DFS and if from that node no other node can be traversed append it to the stack
