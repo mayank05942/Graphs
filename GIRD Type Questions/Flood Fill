@@ -7,7 +7,7 @@ Code:
 class Solution:
     def floodFill(self, grid: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
         
-        color = grid[sr][sc]
+        
         
         def cc(grid,i,j):
             if i >= 0 and j < len(grid[0]) and i < len(grid) and j >= 0 and grid[i][j] == color and grid[i][j] != newColor:
@@ -20,8 +20,10 @@ class Solution:
                 cc(grid,i,j+1)
             else:
                 return
-        if grid[sr][sc] == color:
-            cc(grid,sr,sc)
+                
+                
+        color = grid[sr][sc]
+        cc(grid,sr,sc)
 
         return grid
       
